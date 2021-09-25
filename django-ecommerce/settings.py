@@ -21,6 +21,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    'crispy_forms',
+
     'core'
 ]
 
@@ -83,9 +85,15 @@ if ENVIRONMENT == 'production':
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-#Auth
+# Auth
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 SITE_ID = 1
+
+LOGIN_REDIRECT_URL = "/"
+
+# CRISPY-FORM
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
