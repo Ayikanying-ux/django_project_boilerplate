@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+  {% block content %}
+
+    <!--Main layout-->
+    <main>
+      <div class="container">
+        <div class="table-responsive text-nowrap">
+          <h2>Order Summary</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item Title</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total Item Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order_item in object.item.all %}
+              <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{order_item.item.title}}</td>
+                <td>${{order_item.item.price}}</td>
+                <td>{{order_item.quantity}}</td>
+                <td>${{order_item.get_total_item_price}}</td>
+                <td>
+                  <a href=""><i class="fas fa-minus mr-2"></i></a>
+                  {{order_item.quantity}}
+                  <a href=""><i class="fas fa-plus ml-2"></i></a>
+                </td>
+                {% empty %}
+                <tr>
+                  <td>Your cart is empty</td>
+                </tr>
+              </tr>
+              {% endfor %}
+              <tr>
+                <td colspan="4"><b>Order total</b></td>
+                <td><b>{{ object.get_final_price }}</b></td>
+              </tr>
+              <tr>
+                <td colspan="5">
+                  <a href="/checkout" class="btn btn-default float-right ml-2"
+                    >Proceed To Checkout</a
+                  >
+                  <a href="/" class="btn btn-warning float-right mr-2"
+                    >Continue Shopping</a
+                  >
+                </td>
+              </tr>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <!--Main layout-->
+
+    <!--Footer-->
+    <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+      <hr class="my-4">
+
+      <!-- Social icons -->
+      <div class="pb-4">
+        <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+          <i class="fab fa-facebook-f mr-3"></i>
+        </a>
+
+        <a href="https://twitter.com/MDBootstrap" target="_blank">
+          <i class="fab fa-twitter mr-3"></i>
+        </a>
+
+        <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+          <i class="fab fa-youtube mr-3"></i>
+        </a>
+
+        <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
+          <i class="fab fa-google-plus-g mr-3"></i>
+        </a>
+
+        <a href="https://dribbble.com/mdbootstrap" target="_blank">
+          <i class="fab fa-dribbble mr-3"></i>
+        </a>
+
+        <a href="https://pinterest.com/mdbootstrap" target="_blank">
+          <i class="fab fa-pinterest mr-3"></i>
+        </a>
+
+        <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+          <i class="fab fa-github mr-3"></i>
+        </a>
+
+        <a href="http://codepen.io/mdbootstrap/" target="_blank">
+          <i class="fab fa-codepen mr-3"></i>
+        </a>
+      </div>
+      <!-- Social icons -->
+
+      <!--Copyright-->
+      <div class="footer-copyright py-3">
+        © 2019 Copyright:
+        <a href="" target="_blank"> E-commerce.com </a>
+      </div>
+      <!--/.Copyright-->
+
+    </footer>
+    <!--/.Footer-->
+  {% endblock content %}
